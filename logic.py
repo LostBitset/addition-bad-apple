@@ -26,8 +26,32 @@ class Com(ABC):
         raise NotImplementedError("method is abstract")
 
 @dataclass
-class Element:
+class Inst:
     com: Com
     inputs: t.Dict[Pin, Wire]
     outputs: t.Dict[Wire, Pin]
+
+@dataclass
+class Block(Com):
+    circuit: "Circuit"
+    input_bindings: t.Dict[Pin, Wire]
+    output_bindings: t.Dict[Pin, Wire]
+
+    @property
+    def inputs(self) -> t.List[Pin]:
+        return list(self.input_bindings.keys())
+
+    @property
+    def outputs(self) -> t.List[Pin]:
+        return list(self.output_bindings.keys())
+
+    def apply(self, inputs: t.Dict[Pin, bool]) -> t.Dict[Pin, bool]:
+        setup = self.circuit.run_with({
+            self.input_bindings[pin]: value
+            for pin, value in inputs.items()
+        })
+        return {
+            pin: setup.probe(wire)
+            for pin, wire in self.output_bindings.items()
+        }
 
