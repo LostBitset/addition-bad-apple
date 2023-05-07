@@ -92,8 +92,12 @@ class CircuitSetup:
                     to_eval.append(dependent)
         for inst in reversed(to_eval):
             inputs = {
-                for 
+                pin: self.known[wire]
+                for pin, wire in inst.inputs.items()
             }
+            outputs = inst.com.apply(inputs)
+            for wire, pin in inst.outputs:
+                self.known[wire] = outputs[pin]
         if wire not in self.known:
             raise Exception(f"Something isn't right. Failed to probe {wire}.")
         return self.known[wire]
