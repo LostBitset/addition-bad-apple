@@ -86,11 +86,15 @@ class CircuitSetup:
             if chosen in self.known:
                 continue
             for input_wire in chosen.inputs.values():
+                if input_wire not in self.circuit.provider_index:
+                    raise Exception(f"{input_wire} isn't connected or set.")
                 for dependent in self.circuit.provider_index[input_wire]:
                     to_eval.append(dependent)
-        # TODO TODO TODO
-        # go through to_eval in reverse order and build up self.known
+        for inst in reversed(to_eval):
+            inputs = {
+                for 
+            }
         if wire not in self.known:
-            raise Exception("Something isn't connected right.")
+            raise Exception(f"Something isn't right. Failed to probe {wire}.")
         return self.known[wire]
 
