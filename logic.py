@@ -55,3 +55,18 @@ class Block(Com):
             for pin, wire in self.output_bindings.items()
         }
 
+@dataclass
+class Circuit:
+    insts: t.List[Inst]
+
+    def run_with(self, set_wires: t.Dict[Wire, bool]) -> "CircuitSetup":
+        return CircuitSetup(self.circuit, set_wires)
+
+@dataclass
+class CircuitSetup:
+    circuit: Circuit
+    set_wires: t.Dict[Wire, bool]
+
+    def probe(self, wire: Wire) -> bool:
+        return NotImplemented
+
