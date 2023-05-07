@@ -55,12 +55,16 @@ class Block(Com):
             for pin, wire in self.output_bindings.items()
         }
 
-@dataclass
 class Circuit:
-    insts: t.List[Inst]
+    def __init__(self, insts: t.List[Inst]):
+        self.provider_index = {
+            out_wire: inst
+            for inst in insts
+            for out_wire in inst.outputs.keys()
+        }
 
     def run_with(self, set_wires: t.Dict[Wire, bool]) -> "CircuitSetup":
-        return CircuitSetup(self.circuit, set_wires)
+        return CircuitSetup(self.insts, set_wires)
 
 @dataclass
 class CircuitSetup:
@@ -68,5 +72,6 @@ class CircuitSetup:
     set_wires: t.Dict[Wire, bool]
 
     def probe(self, wire: Wire) -> bool:
-        return NotImplemented
+        # TODO
+        pass
 
