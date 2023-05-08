@@ -33,12 +33,16 @@ class NandCircuit:
             elif isinstance(op, NandInstance):
                 outputs = op.circuit.eval({
                     inner: state[outer]
-                    for inner, outer in op.ibindings.entries()
+                    for inner, outer in op.ibindings.items()
                 })
-                for inner, value in outputs:
+                for inner, value in outputs.items():
                     state[op.obindings[inner]] = value
             else:
                 raise BadNandOpError(op)
+        return {
+            k: state[k]
+            for k in self.outputs
+        }
 
 class BadNandOpError(BaseException):
     def __init__(self, op: t.Any):
