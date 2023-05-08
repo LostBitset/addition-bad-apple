@@ -28,7 +28,7 @@ class NandCircuit:
     outputs: t.List[Var]
     ops: t.List[NandOp | NandInstance | SimpleBinding]
 
-    def eval(self, ivals: t.Dict[Var, bool]) -> t.Dict[Var, bool]:
+    def eval(self, ivals: t.Dict[Var, bool], dbg: bool = False) -> t.Dict[Var, bool]:
         state = ivals.copy()
         for op in self.ops:
             if isinstance(op, NandOp):
@@ -51,6 +51,11 @@ class NandCircuit:
                     raise BadNandOpError(op)
             else:
                 raise BadNandOpError(op)
+        if dbg:
+            print("===  BEGIN DEBUG OUTPUT  ===")
+            for k, v in state.items():
+                print(f"{k} -> {v}")
+            print("===   END DEBUG OUTPUT   ===")
         return {
             k: state[k]
             for k in self.outputs

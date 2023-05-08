@@ -23,7 +23,7 @@ def main():
         "b 7": False,
 
     }
-    outputs = cla.eval(inputs)
+    outputs = cla.eval(inputs, True)
     print("".join([
         "1" if outputs[f"sum {i}"] else "0"
         for i in range(8)
