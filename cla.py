@@ -53,10 +53,39 @@ def carry_lookahead_adder(n_levels):
             {"a": f"a {i}", "b": f"b {i}"},
             {
                 "clsum": f"clsum {i}",
-                "c prop": f"prop {i}",
-                "c gen": f"prop {i}",
+                "c prop": f"prop {i}:{i+1}",
+                "c gen": f"gen {i}:{i+1}",
             },
         )
         for i in range(n_bits)
     ]
+    gp_modules = []
+    for level in range(1, n_levels):
+        step = 2 ** level
+        for i in range(0, n_bits, step):
+            bgn0, end0 = i, i + (step // 2)
+            bgn1, end1 = i + (step // 2), i + step
+            gp_modules.append(NandInstance(
+                cla_gp,
+                {
+                    "gen h": f"gen {bgn1}:{end1}",
+                    "prop h": f"prop {bgn1}:{end1}",
+                    "gen l": f"gen {bgn0}:{end0}",
+                    "prop l": f"prop {bgn0}:{end0}",
+                },
+                {
+                    "gen hl": f"gen {bgn0}:{end1}",
+                    "prop hl": f"gen {bgn0}:{end1}",
+                },
+            ))
+    print("WARNING: TODO TODO TODO")
+    return NandCircuit(
+        inputs,
+        [],
+        [
+            *carryless_adders,
+            *gp_modules,
+        ],
+    )
+
 
