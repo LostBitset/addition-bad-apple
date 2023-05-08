@@ -78,6 +78,26 @@ def carry_lookahead_adder(n_levels):
                     "prop hl": f"gen {bgn0}:{end1}",
                 },
             ))
+    carry_modules = [
+        SimpleBinding("carry 0:{n_bits}", False),
+    ]
+    for level in reversed(range(1, n_levels + 1)):
+        step = 2 ** level
+        for i in range(0, n_bits, step):
+            bgn0, end0 = i, i + (step // 2)
+            bgn1, end1 = i + (step // 2), i + step
+            carry_modules.append(NandInstance(
+                carry_modules,
+                {
+                    "c in": f"",
+                    "g in": f"",
+                    "p in": f"",
+                },
+                {
+                    "c h": f"",
+                    "c l": f"",
+                },
+            ))
     print("WARNING: TODO TODO TODO")
     return NandCircuit(
         inputs,
