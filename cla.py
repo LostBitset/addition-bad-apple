@@ -60,7 +60,7 @@ def carry_lookahead_adder(n_levels):
         for i in range(n_bits)
     ]
     gp_modules = []
-    for level in range(1, n_levels):
+    for level in range(1, n_levels + 1):
         step = 2 ** level
         for i in range(0, n_bits, step):
             bgn0, end0 = i, i + (step // 2)
