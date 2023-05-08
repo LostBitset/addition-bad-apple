@@ -2,28 +2,32 @@ from cla import carry_lookahead_adder
 
 def main():
     cla = carry_lookahead_adder(3)
-    # 76 + 158
-    # 0100 1100 + 1001 1110
     inputs = {
-        "a 0": False,
-        "a 1": True,
+
+        "a 0": True,
+        "a 1": False,
         "a 2": False,
         "a 3": False,
-        "a 4": True,
-        "a 5": True,
+        "a 4": False,
+        "a 5": False,
         "a 6": False,
         "a 7": False,
+
         "b 0": True,
         "b 1": False,
         "b 2": False,
-        "b 3": True,
-        "b 4": True,
-        "b 5": True,
-        "b 6": True,
+        "b 3": False,
+        "b 4": False,
+        "b 5": False,
+        "b 6": False,
         "b 7": False,
+
     }
     outputs = cla.eval(inputs)
-    print(outputs)
+    print("".join([
+        "1" if outputs[f"sum {i}"] else "0"
+        for i in range(8)
+    ]))
 
 if __name__ == "__main__":
     main()
