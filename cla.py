@@ -13,6 +13,14 @@ carryless_fa = NandCircuit(
     ],
 )
 
+carry_epilogue = NandCircuit(
+    ["clsum", "c in"],
+    ["sum"],
+    [
+        NandInstance(xor_g, {"a": "clsum", "b": "c in"}, {"q": "sum"}),
+    ],
+)
+
 cla_gp = NandCircuit(
     ["gen h", "prop h", "gen l", "prop l"],
     ["gen hl", "prop hl"],
