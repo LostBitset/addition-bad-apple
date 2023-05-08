@@ -89,7 +89,6 @@ def carry_lookahead_adder(n_levels):
         for i in range(0, n_bits, step):
             bgn0, end0 = i, i + (step // 2)
             bgn1, end1 = i + (step // 2), i + step
-            print(f"[dbg] use \"gen {bgn0}:{end1}\"")
             carry_modules.append(NandInstance(
                 carry_unit,
                 {
