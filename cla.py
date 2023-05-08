@@ -41,3 +41,22 @@ carry_unit = NandCircuit(
     ],
 )
 
+def carry_lookahead_adder(n_levels):
+    n_bits = 2 ** n_levels
+    inputs = [
+        *( f"a {i}" for i in range(n_bits) ),
+        *( f"b {i}" for i in range(n_bits) ),
+    ]
+    carryless_adders = [
+        NandInstance(
+            carryless_fa,
+            {"a": f"a {i}", "b": f"b {i}"},
+            {
+                "clsum": f"clsum {i}",
+                "c prop": f"prop {i}",
+                "c gen": f"prop {i}",
+            },
+        )
+        for i in range(n_bits)
+    ]
+
