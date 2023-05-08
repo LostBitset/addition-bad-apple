@@ -12,6 +12,11 @@ class NandOp:
     inputs: t.List[Var]
 
 @dataclass
+class SimpleBinding:
+    target: Var
+    source: Var | bool
+
+@dataclass
 class NandInstance:
     circuit: "NandCircuit"
     ibindings: t.Dict[Var, Var]  # inner -> outer
@@ -21,7 +26,7 @@ class NandInstance:
 class NandCircuit:
     inputs: t.List[Var]
     outputs: t.List[Var]
-    ops: t.List[NandOp | NandInstance]
+    ops: t.List[NandOp | NandInstance | SimpleBinding]
 
     def eval(self, ivals: t.Dict[Var, bool]) -> t.Dict[Var, bool]:
         state = ivals.copy()
@@ -37,6 +42,13 @@ class NandCircuit:
                 })
                 for inner, value in outputs.items():
                     state[op.obindings[inner]] = value
+            elif isinstance(op, SimpleBinding):
+                if isinstance(op.source, Var):
+                    state[op.target] = state[op.source]
+                elif isinstance(op.source, bool):
+                    state[op.target] = op.source
+                else:
+                    raise BadNandOpError(op)
             else:
                 raise BadNandOpError(op)
         return {
