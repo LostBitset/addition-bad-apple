@@ -1,6 +1,8 @@
 from nandlogic import NandCircuit, NandInstance
 from nandlogic_std import and_g, or_g, xor_g
 
+# Citation: https://www.youtube.com/watch?v=i1tUBZLWD3o
+
 partial_fa = NandCircuit(
     ["a", "b", "c in"],
     ["sum", "c prop", "c gen"],
