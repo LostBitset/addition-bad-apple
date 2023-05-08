@@ -47,6 +47,9 @@ def carry_lookahead_adder(n_levels):
         *( f"a {i}" for i in range(n_bits) ),
         *( f"b {i}" for i in range(n_bits) ),
     ]
+    outputs = [
+        f"sum {i}" for i in range(n_bits)
+    ]
     carryless_adders = [
         NandInstance(
             carryless_fa,
@@ -87,24 +90,33 @@ def carry_lookahead_adder(n_levels):
             bgn0, end0 = i, i + (step // 2)
             bgn1, end1 = i + (step // 2), i + step
             carry_modules.append(NandInstance(
-                carry_modules,
+                carry_unit,
                 {
-                    "c in": f"",
-                    "g in": f"",
-                    "p in": f"",
+                    "c in": f"carry {bgn0}:{end1}",
+                    "g in": f"gen {bgn0}:{end1}",
+                    "p in": f"prop {bgn0}:{end1}",
                 },
                 {
-                    "c h": f"",
-                    "c l": f"",
+                    "c h": f"carry {bgn1}:{end1}",
+                    "c l": f"carry {bgn0}:{end0}",
                 },
             ))
-    print("WARNING: TODO TODO TODO")
+    carry_epilogues = [
+        NandInstance(
+            carry_epilogue,
+            {"clsum": f"clsum {i}", "c in": f"carry {i}:{i+1}"},
+            {"sum": f"sum {i}"},
+        )
+        for i in range(n_bits)
+    ]
     return NandCircuit(
         inputs,
-        [],
+        outputs,
         [
             *carryless_adders,
             *gp_modules,
+            *carry_modules,
+            *carry_epilogues,
         ],
     )
 
