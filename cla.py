@@ -78,7 +78,7 @@ def carry_lookahead_adder(n_levels):
                 },
                 {
                     "gen hl": f"gen {bgn0}:{end1}",
-                    "prop hl": f"gen {bgn0}:{end1}",
+                    "prop hl": f"prop {bgn0}:{end1}",
                 },
             ))
     carry_modules = [
