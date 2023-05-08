@@ -82,7 +82,7 @@ def carry_lookahead_adder(n_levels):
                 },
             ))
     carry_modules = [
-        SimpleBinding("carry 0:{n_bits}", False),
+        SimpleBinding(f"carry 0:{n_bits}", False),
     ]
     for level in reversed(range(1, n_levels + 1)):
         step = 2 ** level
