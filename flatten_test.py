@@ -26,6 +26,7 @@ def main():
     print("Checking all netlists...")
     for netlist in (netlist1, netlist2, netlist3):
         check_netlist(netlist)
+    print("passed!")
 
 if __name__ == "__main__":
     main()

@@ -35,6 +35,7 @@ def main():
         a = randint(0, 127)
         b = randint(0, 127)
         test_inputs(cla, levels, a, b)
+    print("passed!")
 
 if __name__ == "__main__":
     main()
