@@ -2,7 +2,7 @@ from nandlogic import NandNetlist, NandOp
 
 def check_netlist_return_ok(netlist: NandNetlist) -> bool:
     set_nets = set()
-    seen_root_nets = 0
+    seen_root_nets = set()
     for op in netlist.gates:
         for i in op.inputs:
             if i not in set_nets:
@@ -13,12 +13,12 @@ def check_netlist_return_ok(netlist: NandNetlist) -> bool:
                         print(f"NETLIST CHECK FAILED: Not connected: {i}")
                         return False
                     else:
-                        seen_root_nets += 1
+                        seen_root_nets.add(i)
                 else:
                     print(f"NETLIST CHECK FAILED: Has unknown root: {i}")
                     return False
         set_nets.add(op.target)
-    print(f"NETLIST CHECK OK: Total nets: {len(set_nets) + seen_root_nets}")
+    print(f"NETLIST CHECK OK: Total nets: {len(set_nets) + len(seen_root_nets)}")
     return True
 
 def check_netlist(netlist: NandNetlist):
