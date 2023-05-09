@@ -1,5 +1,7 @@
 from nandlogic_std import xor_g
 from cla import carry_lookahead_adder
+from check_netlists import check_netlist
+
 from pprint import pprint
 
 def main():
@@ -21,6 +23,9 @@ def main():
     print("===   END NETLIST: CARRY_LOOKAHEAD_ADDER(8)   ===")
     print("^^^")
     print(f"^^^ GATE COUNT = {len(netlist3.gates)}")
+    print("Checking all netlists...")
+    for netlist in (netlist1, netlist2, netlist3):
+        check_netlist(netlist)
 
 if __name__ == "__main__":
     main()
