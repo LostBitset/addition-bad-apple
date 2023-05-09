@@ -68,7 +68,8 @@ class NandCircuit:
                 counter += 1
             elif isinstance(op, SimpleBinding):
                 if isinstance(op.source, bool):
-                    raise UnflattenableNandOpError(op)
+                    target_name = qualify_rename(op.target, ns, renames)
+                    renames[target_name] = "#fixed#/hi" if op.source else "#fixed#/lo"
                 elif isinstance(op.source, Var):
                     target_name = qualify_rename(op.target, ns, renames)
                     source_name = qualify_rename(op.source, ns, renames)
@@ -111,17 +112,13 @@ class NandCircuit:
             for k in self.outputs
         }
 
-class UnflattenableNandOpError(BaseException):
-    def __init__(self, op: t.Any):
-        self.op = op
-
-    def __str__(self) -> str:
-        return f"Unflattenable nand op: {repr(op)}."
-
 class BadNandOpError(BaseException):
     def __init__(self, op: t.Any):
         self.op = op
 
     def __str__(self) -> str:
-        return f"Bad nand op: {repr(op)}."
+        print(">>  BAD NAND OP      <<")
+        print(">>  BAD OP BELOW...  <<")
+        print(op)
+        return f"Bad nand op: {op}."
 
