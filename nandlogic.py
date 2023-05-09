@@ -116,12 +116,12 @@ class UnflattenableNandOpError(BaseException):
         self.op = op
 
     def __str__(self) -> str:
-        return "Unflattenable nand op: {repr(op)}."
+        return f"Unflattenable nand op: {repr(op)}."
 
 class BadNandOpError(BaseException):
     def __init__(self, op: t.Any):
         self.op = op
 
     def __str__(self) -> str:
-        return "Bad nand op: {repr(op)}."
+        return f"Bad nand op: {repr(op)}."
 
