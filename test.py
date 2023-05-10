@@ -1,6 +1,7 @@
 import nandlogic_test
 import cla_test
 import flatten_test
+import serialization_test
 
 def main():
     print("[test.py] Running nandlogic_test...")
@@ -9,6 +10,8 @@ def main():
     cla_test.main()
     print("[test.py] Running flatten_test...")
     flatten_test.main()
+    print("[test.py] Running serialization_test...")
+    serialization_test.main()
     print("[test.py] All done, everything passed!")
     print("EVERYTHING_PASSED :)")
 
