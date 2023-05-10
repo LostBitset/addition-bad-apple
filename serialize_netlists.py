@@ -2,6 +2,7 @@ from nandlogic import Var, NandNetlist, NandOp
 import typing as t
 
 def serialize_netlist(netlist: NandNetlist) -> t.Generator[str, None, None]:
+    nonlocal next_id, ids
     next_id = 0
     ids = dict()
     def generate_id():
