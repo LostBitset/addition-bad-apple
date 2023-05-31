@@ -1,0 +1,5 @@
+#!/bin/bash
+
+tundra2
+t2-output/linux-gcc-debug-default/FSRS demo_netlist.txt
+

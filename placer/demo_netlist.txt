@@ -1,0 +1,220 @@
+nand 0 ~> 1
+nand 2 ~> 3
+nand 1 3 ~> 4
+nand 0 2 ~> 5
+nand 4 5 ~> 6
+nand 6 ~> 7
+nand 0 ~> 8
+nand 2 ~> 9
+nand 8 9 ~> 10
+nand 0 2 ~> 11
+nand 11 ~> 12
+nand 13 ~> 14
+nand 15 ~> 16
+nand 14 16 ~> 17
+nand 13 15 ~> 18
+nand 17 18 ~> 19
+nand 19 ~> 20
+nand 13 ~> 21
+nand 15 ~> 22
+nand 21 22 ~> 23
+nand 13 15 ~> 24
+nand 24 ~> 25
+nand 26 ~> 27
+nand 28 ~> 29
+nand 27 29 ~> 30
+nand 26 28 ~> 31
+nand 30 31 ~> 32
+nand 32 ~> 33
+nand 26 ~> 34
+nand 28 ~> 35
+nand 34 35 ~> 36
+nand 26 28 ~> 37
+nand 37 ~> 38
+nand 39 ~> 40
+nand 41 ~> 42
+nand 40 42 ~> 43
+nand 39 41 ~> 44
+nand 43 44 ~> 45
+nand 45 ~> 46
+nand 39 ~> 47
+nand 41 ~> 48
+nand 47 48 ~> 49
+nand 39 41 ~> 50
+nand 50 ~> 51
+nand 52 ~> 53
+nand 54 ~> 55
+nand 53 55 ~> 56
+nand 52 54 ~> 57
+nand 56 57 ~> 58
+nand 58 ~> 59
+nand 52 ~> 60
+nand 54 ~> 61
+nand 60 61 ~> 62
+nand 52 54 ~> 63
+nand 63 ~> 64
+nand 65 ~> 66
+nand 67 ~> 68
+nand 66 68 ~> 69
+nand 65 67 ~> 70
+nand 69 70 ~> 71
+nand 71 ~> 72
+nand 65 ~> 73
+nand 67 ~> 74
+nand 73 74 ~> 75
+nand 65 67 ~> 76
+nand 76 ~> 77
+nand 78 ~> 79
+nand 80 ~> 81
+nand 79 81 ~> 82
+nand 78 80 ~> 83
+nand 82 83 ~> 84
+nand 84 ~> 85
+nand 78 ~> 86
+nand 80 ~> 87
+nand 86 87 ~> 88
+nand 78 80 ~> 89
+nand 89 ~> 90
+nand 91 ~> 92
+nand 93 ~> 94
+nand 92 94 ~> 95
+nand 91 93 ~> 96
+nand 95 96 ~> 97
+nand 97 ~> 98
+nand 91 ~> 99
+nand 93 ~> 100
+nand 99 100 ~> 101
+nand 91 93 ~> 102
+nand 102 ~> 103
+nand 23 12 ~> 104
+nand 104 ~> 105
+nand 25 ~> 106
+nand 105 ~> 107
+nand 106 107 ~> 108
+nand 23 10 ~> 109
+nand 109 ~> 110
+nand 49 38 ~> 111
+nand 111 ~> 112
+nand 51 ~> 113
+nand 112 ~> 114
+nand 113 114 ~> 115
+nand 49 36 ~> 116
+nand 116 ~> 117
+nand 75 64 ~> 118
+nand 118 ~> 119
+nand 77 ~> 120
+nand 119 ~> 121
+nand 120 121 ~> 122
+nand 75 62 ~> 123
+nand 123 ~> 124
+nand 101 90 ~> 125
+nand 125 ~> 126
+nand 103 ~> 127
+nand 126 ~> 128
+nand 127 128 ~> 129
+nand 101 88 ~> 130
+nand 130 ~> 131
+nand 117 108 ~> 132
+nand 132 ~> 133
+nand 115 ~> 134
+nand 133 ~> 135
+nand 134 135 ~> 136
+nand 117 110 ~> 137
+nand 137 ~> 138
+nand 131 122 ~> 139
+nand 139 ~> 140
+nand 129 ~> 141
+nand 140 ~> 142
+nand 141 142 ~> 143
+nand 131 124 ~> 144
+nand 144 ~> 145
+nand 145 136 ~> 146
+nand 146 ~> 147
+nand 143 ~> 148
+nand 147 ~> 149
+nand 148 149 ~> 150
+nand 145 138 ~> 151
+nand 151 ~> 152
+nand 138 153 ~> 154
+nand 154 ~> 155
+nand 136 ~> 156
+nand 155 ~> 157
+nand 156 157 ~> 158
+nand 110 153 ~> 159
+nand 159 ~> 160
+nand 108 ~> 161
+nand 160 ~> 162
+nand 161 162 ~> 163
+nand 124 158 ~> 164
+nand 164 ~> 165
+nand 122 ~> 166
+nand 165 ~> 167
+nand 166 167 ~> 168
+nand 10 153 ~> 169
+nand 169 ~> 170
+nand 12 ~> 171
+nand 170 ~> 172
+nand 171 172 ~> 173
+nand 36 163 ~> 174
+nand 174 ~> 175
+nand 38 ~> 176
+nand 175 ~> 177
+nand 176 177 ~> 178
+nand 62 158 ~> 179
+nand 179 ~> 180
+nand 64 ~> 181
+nand 180 ~> 182
+nand 181 182 ~> 183
+nand 88 168 ~> 184
+nand 184 ~> 185
+nand 90 ~> 186
+nand 185 ~> 187
+nand 186 187 ~> 188
+nand 7 ~> 189
+nand 153 ~> 190
+nand 189 190 ~> 191
+nand 7 153 ~> 192
+nand 191 192 ~> 193
+nand 193 ~> 194
+nand 20 ~> 195
+nand 173 ~> 196
+nand 195 196 ~> 197
+nand 20 173 ~> 198
+nand 197 198 ~> 199
+nand 199 ~> 200
+nand 33 ~> 201
+nand 163 ~> 202
+nand 201 202 ~> 203
+nand 33 163 ~> 204
+nand 203 204 ~> 205
+nand 205 ~> 206
+nand 46 ~> 207
+nand 178 ~> 208
+nand 207 208 ~> 209
+nand 46 178 ~> 210
+nand 209 210 ~> 211
+nand 211 ~> 212
+nand 59 ~> 213
+nand 158 ~> 214
+nand 213 214 ~> 215
+nand 59 158 ~> 216
+nand 215 216 ~> 217
+nand 217 ~> 218
+nand 72 ~> 219
+nand 183 ~> 220
+nand 219 220 ~> 221
+nand 72 183 ~> 222
+nand 221 222 ~> 223
+nand 223 ~> 224
+nand 85 ~> 225
+nand 168 ~> 226
+nand 225 226 ~> 227
+nand 85 168 ~> 228
+nand 227 228 ~> 229
+nand 229 ~> 230
+nand 98 ~> 231
+nand 188 ~> 232
+nand 231 232 ~> 233
+nand 98 188 ~> 234
+nand 233 234 ~> 235
+nand 235 ~> 236
