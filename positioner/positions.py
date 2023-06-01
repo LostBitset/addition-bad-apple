@@ -17,9 +17,9 @@ if area < 0.005:
 else:
     width = 1
 
-counts = {
-    1: 2, # FIXME
-}[width]
+counts = 220
 
 density = counts / area
+bs = int(density ** 0.5)
+print(bs)
 
