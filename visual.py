@@ -47,8 +47,8 @@ def make_visual(frame, asframe=None):
 
         print(f"{len(gates)} gates, {len(wires)} wires")
 
-    pad = 5
-    sc = 10
+    pad = 2
+    sc = 3
 
     def port_position(port, posmap):
         (i, is_output, t) = port
@@ -60,7 +60,7 @@ def make_visual(frame, asframe=None):
 
     def adj():
         upad = pad // 2
-        return random.randint(-upad + 1, upad)
+        return random.randint(-upad, upad + 1)
 
     img = np.zeros((360 * sf, 480 * sf, 3), np.uint8)
 

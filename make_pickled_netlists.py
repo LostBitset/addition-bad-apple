@@ -10,7 +10,7 @@ def cla_netlist(levels):
 
 def main():
     obj = dict()
-    for levels in range(1, 6):
+    for levels in range(1, 9):
         obj[levels] = cla_netlist(levels)
     with open("netlists.pkl", "wb") as f:
         pkl.dump(obj, f)

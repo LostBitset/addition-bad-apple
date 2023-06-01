@@ -1,6 +1,6 @@
-from os import system
+from place import place_frame
 
 for i in range(1, 6572):
     print(f"=== GENERATING NETLIST, PLACEMENT FOR FRAME #{i}... ===")
-    system(f"python place.py {i}")
+    place_frame(i)
 

@@ -19,7 +19,7 @@ def get_positions(frame, counts, frames_path="frames"):
     print(f"ratio = {ratio:.2f}")
     bs = int((ratio ** 0.5) * (4 / 5))
     print(f"ideal block size {bs}")
-    min_safe_bs = 11
+    min_safe_bs = 4
     if bs < min_safe_bs:
         return None # indicates failure to complete
     print(f"using block size {bs}")
