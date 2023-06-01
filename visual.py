@@ -6,6 +6,8 @@ import cv2
 import sys
 import random
 
+sf = 2
+
 def make_visual(frame, asframe=None):
     input_file = f"out_placed/frame{frame}.placement.txt"
     gates = None
@@ -60,10 +62,11 @@ def make_visual(frame, asframe=None):
         upad = pad // 2
         return random.randint(-upad + 1, upad)
 
-    img = np.zeros((360, 480, 3), np.uint8)
+    img = np.zeros((360 * sf, 480 * sf, 3), np.uint8)
 
     if not skipme:
         gate_positions = [ (gate.y + adj(), gate.x + adj()) for gate in gates ]
+        gate_positions = [ (x * sf, y * sf) for (x, y) in gate_positions ]
 
         def draw_wires():
             print("Drawing wires...")
@@ -78,7 +81,7 @@ def make_visual(frame, asframe=None):
             print("Drawing gates...")
 
             for (x, y) in gate_positions:
-                w, h = sc, sc
+                w, h = sc * sf, sc * sf
                 cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
         draw_gates()
