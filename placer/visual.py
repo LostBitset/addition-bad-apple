@@ -36,7 +36,7 @@ for i, gate in enumerate(gates):
             wires.append(new_wire)
         net_positions[net] = loc
 
-print(wires)
+print(f"{len(gates)} gates, {len(wires)} wires")
 
 tot, pad = 10, 5
 sc = tot - pad
@@ -53,11 +53,15 @@ img = np.zeros((360, 480, 3), np.uint8)
 
 gate_positions = []
 
+print("Drawing gates...")
+
 for gate in gates:
     x, y = gate.x * (sc + pad), gate.y * (sc + pad)
     w, h = sc, sc
     cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 1)
     gate_positions.append((x, y))
+
+print("Drawing wires...")
 
 for wire in wires:
     (a, b) = wire
@@ -65,8 +69,12 @@ for wire in wires:
     b_pos = port_position(b, gate_positions)
     cv2.line(img, a_pos, b_pos, (0, 0, 255), 1)
 
+print("Correcting...")
+
 translate = np.float32([[1, 0, (pad // 2)], [0, 1, (pad // 2)]])
 img = cv2.warpAffine(img, translate, (img.shape[1], img.shape[0]))
+
+print("Image creation complete.")
 
 cv2.imshow("Test", img)
 cv2.waitKey(0)
