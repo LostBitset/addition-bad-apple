@@ -57,7 +57,8 @@ def make_visual(frame, asframe=None):
             return (tlx + sc, tly + int(t * sc))
 
     def adj():
-        return random.randint(-pad + 1, pad)
+        upad = pad // 2
+        return random.randint(-upad + 1, upad)
 
     img = np.zeros((360, 480, 3), np.uint8)
 
@@ -92,15 +93,20 @@ def make_visual(frame, asframe=None):
 
     if skipme:
         prevframe = frame - 1
-        if prevframe != 0:
+        if prevframe != 0 and frame < 6516:
             if asframe is None:
                 make_visual(prevframe, frame)
+                return
             else:
                 make_visual(prevframe, asframe)
+                return
         else:
-            print("FIRST FRAME, EMPTY")
+            print("FRAME MUST BE EMPTY")
 
-    savepath = f"outframes/AddApple_{frame}.jpg"
+    if asframe is None:
+        savepath = f"outframes/AddApple_{frame}.jpg"
+    else:
+        savepath = f"outframes/AddApple_{asframe}.jpg"
     print(f"Saving as {savepath}")
 
     cv2.imwrite(savepath, img)
