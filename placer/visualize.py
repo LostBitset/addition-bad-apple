@@ -6,6 +6,8 @@ import cv2
 import sys
 import random
 
+random.seed(443)
+
 gates = None
 with open(sys.argv[1], "r") as f:
     lines = f.readlines()
