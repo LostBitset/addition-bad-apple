@@ -35,5 +35,11 @@ if bs > 1:
     )
 img = img > 0.01
 
-print(img)
+options = []
+for r, row in enumerate(img):
+    for c, entry in enumerate(row):
+        if entry:
+            options.append((r * bs, c * bs))
+
+print(options)
 
