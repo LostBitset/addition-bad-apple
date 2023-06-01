@@ -25,7 +25,15 @@ for i, gate in enumerate(gates):
 
 print(wires)
 
+tot, pad = int(480 / 20), 5
+sc = tot - pad
+
 img = np.zeros((360, 480, 3), np.uint8)
+
+for gate in gates:
+    x, y = gate.x * (sc + pad), gate.y * (sc + pad)
+    w, h = sc, sc
+    cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
 cv2.imshow("Test", img)
 cv2.waitKey(0)

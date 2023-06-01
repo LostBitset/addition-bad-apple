@@ -34,5 +34,5 @@ class PlacedGate:
         gate = gate.strip()
         [x, y] = xy.strip().split(",")
         self.gate = Gate(gate)
-        self.x, self.y = x, y
+        self.x, self.y = int(x), int(y)
 
