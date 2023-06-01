@@ -15,9 +15,21 @@ net_positions = dict()
 for i, gate in enumerate(gates):
     for j, net in enumerate([*gate.gate.inputs, *gate.gate.outputs]):
         if j >= len(gate.gate.inputs):
-            loc = (i, True)
+            if len(gate.gate.outputs) > 1:
+                t = (j - len(gate.gate.inputs)) / (len(gate.gate.outputs) - 1)
+            elif len(gate.gate.outputs) == 1:
+                t = 0.5
+            else:
+                raise "uh oh"
+            loc = (i, True, t)
         else:
-            loc = (i, False)
+            if len(gate.gate.inputs) > 1:
+                t = j / (len(gate.gate.inputs) - 1)
+            elif len(gate.gate.inputs) == 1:
+                t = 0.5
+            else:
+                raise "uh oh"
+            loc = (i, False, t)
         if net in net_positions:
             new_wire = (net_positions[net], loc)
             wires.append(new_wire)
@@ -29,12 +41,16 @@ tot, pad = int(480 / 20), 5
 sc = tot - pad
 
 def port_position(port, posmap):
-    (i, side) = port
-    ...
+    (i, is_output, t) = port
+    (tlx, tly) = posmap[i]
+    if is_output:
+        return (tlx, tly + int(t * sc))
+    else:
+        return (tlx + sc, tly + int(t * sc))
 
 img = np.zeros((360, 480, 3), np.uint8)
 
-gate_positions = dict()
+gate_positions = []
 
 for gate in gates:
     x, y = gate.x * (sc + pad), gate.y * (sc + pad)
@@ -46,7 +62,7 @@ for wire in wires:
     (a, b) = wire
     a_pos = port_position(a, gate_positions)
     b_pos = port_position(b, gate_positions)
-    cv2.line(img, a_pos, b_pos, (0, 0, 255), 2)
+    cv2.line(img, a_pos, b_pos, (0, 0, 255), 1)
 
 cv2.imshow("Test", img)
 cv2.waitKey(0)
