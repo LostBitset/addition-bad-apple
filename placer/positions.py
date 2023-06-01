@@ -5,22 +5,23 @@ import cv2
 import sys
 import random
 
-def get_positions(frame, counts):
-    path = f"frames/BadApple_{frame}.jpg"
+def get_positions(frame, counts, frames_path="frames"):
+    path = f"{frames_path}/BadApple_{frame}.jpg"
     print(path)
     rgb = cv2.imread(path)
     img = rgb[:,:,0]
     img = img > 100
     print(f"original image has ~{int(img.sum())} white pixels")
     if img.sum() < 5:
-        return None
+        return []
     print(f"(using) counts = {counts}")
     ratio = img.sum() / counts
     print(f"ratio = {ratio:.2f}")
     bs = int((ratio ** 0.5) * (4 / 5))
     print(f"ideal block size {bs}")
-    if bs < 10:
-        bs = 10
+    min_safe_bs = 11
+    if bs < min_safe_bs:
+        return None # indicates failure to complete
     print(f"using block size {bs}")
     print(f"original image size {img.size}")
     img = block_reduce(

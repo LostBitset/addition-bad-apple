@@ -38,7 +38,7 @@ for i, gate in enumerate(gates):
 
 print(f"{len(gates)} gates, {len(wires)} wires")
 
-tot, pad = 10, 5
+tot, pad = 15, 5
 sc = tot - pad
 
 def port_position(port, posmap):
