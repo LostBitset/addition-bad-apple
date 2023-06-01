@@ -9,7 +9,6 @@ import random
 gates = None
 with open(sys.argv[1], "r") as f:
     lines = f.readlines()
-print(lines)
 skipme = False
 if "SKIPME" in [ line.strip() for line in lines ]:
     skipme = True
