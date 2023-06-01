@@ -1,7 +1,12 @@
 from PIL import Image
 import numpy as np
+from skimage.measure import block_reduce
+import cv2
 
 import sys
+import random
+
+random.seed(443)
 
 frame = int(sys.argv[1])
 
@@ -20,6 +25,15 @@ else:
 counts = 220
 
 density = counts / area
-bs = int(density ** 0.5)
-print(bs)
+bs = int((density ** 0.5) / 2)
+
+if bs > 1:
+    img = block_reduce(
+        img,
+        block_size=(bs, bs),
+        func=np.mean,
+    )
+img = img > 0.01
+
+print(img)
 
