@@ -9,6 +9,7 @@ import random
 def get_positions(frame):
     pic = Image.open(f"frames/BadApple_{frame}.jpg", "r")
     img = np.asarray(pic)[:,:,0] / 255
+    print(f"original image has ~{int(img.sum())} white pixels")
     width = None
     if img.sum() < 5:
         return None
@@ -17,19 +18,23 @@ def get_positions(frame):
     counts = 220
     print(f"width = {width}, counts = {counts}")
     ratio = img.sum() / counts
-    bs = int((ratio ** 0.5) / 2)
-    if bs > 1:
-        img = block_reduce(
-            img,
-            block_size=(bs, bs),
-            func=np.mean,
-        )
+    bs = int((ratio ** 0.5) * (4 / 5))
+    if bs < 8:
+        bs = 8
+    print(f"block size {bs}")
+    print(f"original image size {img.size}")
+    img = block_reduce(
+        img,
+        block_size=(bs, bs),
+        func=np.mean,
+    )
+    print(f"reduced image size {img.size}")
     img = img > 0.01
     options = []
     for r, row in enumerate(img):
         for c, entry in enumerate(row):
             if entry:
-                if bs > 1:
+                if bs != 0:
                     options.append((r * bs, c * bs))
                 else:
                     options.append((r, c))
