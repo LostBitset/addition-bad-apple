@@ -6,40 +6,44 @@ import cv2
 import sys
 import random
 
-random.seed(443)
+def get_positions(frame):
+    pic = Image.open(f"frames/BadApple_{frame}.jpg", "r")
+    img = np.asarray(pic)[:,:,0] / 255
 
-frame = int(sys.argv[1])
+    width = None
+    if img.sum() < 5:
+        return None
+    else:
+        width = 1
 
-pic = Image.open(f"frames/BadApple_{frame}.jpg", "r")
-img = np.asarray(pic)[:,:,0] / 255
+    counts = 220
 
-area = img.sum() / img.size
+    ratio = img.sum() / counts
+    bs = int((ratio ** 0.5) / 2)
+    print(f"block size {bs}")
 
-width = None
-if area < 0.005:
-    print("nothing")
-    sys.exit(0)
-else:
-    width = 1
+    if bs > 1:
+        img = block_reduce(
+            img,
+            block_size=(bs, bs),
+            func=np.mean,
+        )
+    img = img > 0.01
 
-counts = 220
+    options = []
+    for r, row in enumerate(img):
+        for c, entry in enumerate(row):
+            if entry:
+                if bs > 1:
+                    options.append((r * bs, c * bs))
+                else:
+                    options.append((r, c))
 
-density = counts / area
-bs = int((density ** 0.5) / 2)
+    print(f"sampling from {len(options)} options")
 
-if bs > 1:
-    img = block_reduce(
-        img,
-        block_size=(bs, bs),
-        func=np.mean,
-    )
-img = img > 0.01
+    return random.sample(options, counts)
 
-options = []
-for r, row in enumerate(img):
-    for c, entry in enumerate(row):
-        if entry:
-            options.append((r * bs, c * bs))
-
-print(options)
+if __name__ == "__main__":
+    random.seed(443)
+    print(get_positions(50))
 
