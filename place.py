@@ -33,5 +33,6 @@ else:
 
     ser = "\n".join(lines)
 
-print(ser)
+with open(f"out_placed/frame{frame}.placement.txt", "w") as f:
+    f.write(ser)
 
