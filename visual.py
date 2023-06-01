@@ -87,6 +87,9 @@ if not skipme:
 
     print("Image creation complete.")
 
-cv2.imshow("Test", img)
-cv2.waitKey(0)
+framestring = sys.argv[1].split("frame")[-1].split(".")[0]
+savepath = f"outframes/AddApple_{framestring}.jpg"
+print(f"Saving as {savepath}")
+
+cv2.imwrite(savepath, img)
 
