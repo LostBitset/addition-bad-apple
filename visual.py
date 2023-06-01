@@ -51,23 +51,27 @@ def port_position(port, posmap):
 
 img = np.zeros((360, 480, 3), np.uint8)
 
-gate_positions = []
+gate_positions = [ (gate.y, gate.x) for gate in gates ]
 
-print("Drawing gates...")
+def draw_wires():
+    print("Drawing wires...")
 
-for gate in gates:
-    x, y = gate.y, gate.x
-    w, h = sc, sc
-    cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 1)
-    gate_positions.append((x, y))
+    for wire in wires:
+        (a, b) = wire
+        a_pos = port_position(a, gate_positions)
+        b_pos = port_position(b, gate_positions)
+        cv2.line(img, a_pos, b_pos, (0, 0, 255), 1)
 
-print("Drawing wires...")
+def draw_gates():
+    print("Drawing gates...")
 
-for wire in wires:
-    (a, b) = wire
-    a_pos = port_position(a, gate_positions)
-    b_pos = port_position(b, gate_positions)
-    cv2.line(img, a_pos, b_pos, (0, 0, 255), 1)
+    for gate in gates:
+        x, y = gate.y, gate.x
+        w, h = sc, sc
+        cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 1)
+
+draw_gates()
+draw_wires()
 
 print("Correcting...")
 
