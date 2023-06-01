@@ -38,8 +38,8 @@ for i, gate in enumerate(gates):
 
 print(f"{len(gates)} gates, {len(wires)} wires")
 
-tot, pad = 15, 5
-sc = tot - pad
+pad = 5
+sc = 10
 
 def port_position(port, posmap):
     (i, is_output, t) = port
@@ -56,7 +56,7 @@ gate_positions = []
 print("Drawing gates...")
 
 for gate in gates:
-    x, y = gate.x * (sc + pad), gate.y * (sc + pad)
+    x, y = gate.y, gate.x
     w, h = sc, sc
     cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 1)
     gate_positions.append((x, y))
