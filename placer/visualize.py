@@ -28,12 +28,25 @@ print(wires)
 tot, pad = int(480 / 20), 5
 sc = tot - pad
 
+def port_position(port, posmap):
+    (i, side) = port
+    ...
+
 img = np.zeros((360, 480, 3), np.uint8)
+
+gate_positions = dict()
 
 for gate in gates:
     x, y = gate.x * (sc + pad), gate.y * (sc + pad)
     w, h = sc, sc
     cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
+    gate_positions.append((x, y))
+
+for wire in wires:
+    (a, b) = wire
+    a_pos = port_position(a, gate_positions)
+    b_pos = port_position(b, gate_positions)
+    cv2.line(img, a_pos, b_pos, (0, 0, 255), 2)
 
 cv2.imshow("Test", img)
 cv2.waitKey(0)
