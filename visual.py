@@ -87,6 +87,17 @@ if not skipme:
     print("Image creation complete.")
 
 framestring = sys.argv[1].split("frame")[-1].split(".")[0]
+
+if skipme:
+    prevframe = int(framestring) - 1
+    if prevframe != 0:
+        cppath = f"outframes/AddApple_{str(prevframe)}.jpg"
+        print(f"Copying image at {cppath}")
+        img = cv2.imread(cppath)
+        print("Copied last")
+    else:
+        print("FIRST FRAME, EMPTY")
+
 savepath = f"outframes/AddApple_{framestring}.jpg"
 print(f"Saving as {savepath}")
 
