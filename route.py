@@ -142,6 +142,6 @@ def route_frame(frame):
         print("done routing")
         print(f"routed {len(wires)} wires")
 
-        with open("out_routes/frame{frame}.route.pkl", "wb") as f:
+        with open(f"out_routes/frame{frame}.route.pkl", "wb") as f:
             pkl.dump(wires, f)
 
