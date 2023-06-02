@@ -39,9 +39,8 @@ def make_visual(frame, asframe=None):
             return (tlx + sc, tly + int(t * sc))
 
     def adj():
-        return 0
-        #upad = pad // 2
-        #return random.randint(-upad, upad + 1)
+        upad = pad // 2
+        return random.randint(-upad - 1, upad + 1)
 
     img = np.zeros((360 * sf, 480 * sf, 3), np.uint8)
 
