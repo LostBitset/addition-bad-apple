@@ -5,6 +5,7 @@ import cv2
 
 import sys
 import random
+import pickle as pkl
 
 sf = 2
 
@@ -20,30 +21,9 @@ def make_visual(frame, asframe=None):
     else:
         gates = [ PlacedGate(i.strip()) for i in lines ]
 
-        wires = []
-        net_positions = dict()
-        for i, gate in enumerate(gates):
-            for j, net in enumerate([*gate.gate.inputs, *gate.gate.outputs]):
-                if j >= len(gate.gate.inputs):
-                    if len(gate.gate.outputs) > 1:
-                        t = (j - len(gate.gate.inputs)) / (len(gate.gate.outputs) - 1)
-                    elif len(gate.gate.outputs) == 1:
-                        t = 0.5
-                    else:
-                        raise "uh oh"
-                    loc = (i, True, t)
-                else:
-                    if len(gate.gate.inputs) > 1:
-                        t = j / (len(gate.gate.inputs) - 1)
-                    elif len(gate.gate.inputs) == 1:
-                        t = 0.5
-                    else:
-                        raise "uh oh"
-                    loc = (i, False, t)
-                if net in net_positions:
-                    new_wire = (net_positions[net], loc)
-                    wires.append(new_wire)
-                net_positions[net] = loc
+        wires = None
+        with open(f"out_routes/frame{frame}.route.pkl", "rb") as f:
+            wires = pkl.load(f)
 
         print(f"{len(gates)} gates, {len(wires)} wires")
 
@@ -59,8 +39,9 @@ def make_visual(frame, asframe=None):
             return (tlx + sc, tly + int(t * sc))
 
     def adj():
-        upad = pad // 2
-        return random.randint(-upad, upad + 1)
+        return 0
+        #upad = pad // 2
+        #return random.randint(-upad, upad + 1)
 
     img = np.zeros((360 * sf, 480 * sf, 3), np.uint8)
 
