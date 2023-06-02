@@ -120,7 +120,7 @@
   <property name="meta.media.top_field_first">0</property>
   <property name="meta.media.progressive">1</property>
  </chain>
- <producer id="producer0" in="00:00:00.000" out="00:28:11.067">
+ <producer id="producer0" in="00:00:00.000" out="00:28:03.700">
   <property name="length">2147483647</property>
   <property name="eof">continue</property>
   <property name="resource">black</property>
@@ -195,7 +195,7 @@
  </chain>
  <playlist id="playlist0">
   <property name="kdenlive:audio_track">1</property>
-  <blank length="00:07:54.433"/>
+  <blank length="00:07:47.067"/>
   <entry producer="chain0" in="00:00:02.500" out="00:03:39.100">
    <property name="kdenlive:id">5</property>
   </entry>
@@ -203,7 +203,7 @@
  <playlist id="playlist1">
   <property name="kdenlive:audio_track">1</property>
  </playlist>
- <tractor id="tractor0" in="00:00:00.000" out="00:11:31.033">
+ <tractor id="tractor0" in="00:00:00.000" out="00:11:23.667">
   <property name="kdenlive:audio_track">1</property>
   <property name="kdenlive:trackheight">69</property>
   <property name="kdenlive:timeline_active">1</property>
@@ -414,14 +414,58 @@
   <property name="kdenlive:audio_track">1</property>
   <entry producer="chain1" in="00:00:08.600" out="00:07:12.333">
    <property name="kdenlive:id">6</property>
+   <property name="kdenlive:activeeffect">0</property>
+   <filter id="filter3">
+    <property name="target_loudness">-23</property>
+    <property name="window">3</property>
+    <property name="max_gain">5</property>
+    <property name="min_gain">-15</property>
+    <property name="max_rate">3</property>
+    <property name="discontinuity_reset">1</property>
+    <property name="in_loudness">-nan</property>
+    <property name="out_gain">-nan</property>
+    <property name="reset_count">15</property>
+    <property name="mlt_service">dynamic_loudness</property>
+    <property name="kdenlive_id">dynamic_loudness</property>
+    <property name="kdenlive:collapsed">0</property>
+   </filter>
   </entry>
-  <entry producer="chain2" in="00:00:04.800" out="00:00:39.767">
+  <entry producer="chain2" in="00:00:05.833" out="00:00:39.767">
    <property name="kdenlive:id">7</property>
+   <property name="kdenlive:activeeffect">0</property>
+   <filter id="filter4">
+    <property name="target_loudness">-23</property>
+    <property name="window">3</property>
+    <property name="max_gain">5</property>
+    <property name="min_gain">-15</property>
+    <property name="max_rate">3</property>
+    <property name="discontinuity_reset">1</property>
+    <property name="in_loudness">-34.5881</property>
+    <property name="out_gain">5</property>
+    <property name="reset_count">5</property>
+    <property name="mlt_service">dynamic_loudness</property>
+    <property name="kdenlive_id">dynamic_loudness</property>
+    <property name="kdenlive:collapsed">0</property>
+   </filter>
   </entry>
   <entry producer="chain1" in="00:07:12.367" out="00:07:19.167">
    <property name="kdenlive:id">6</property>
+   <property name="kdenlive:activeeffect">0</property>
+   <filter id="filter5">
+    <property name="target_loudness">-23</property>
+    <property name="window">3</property>
+    <property name="max_gain">5</property>
+    <property name="min_gain">-15</property>
+    <property name="max_rate">3</property>
+    <property name="discontinuity_reset">1</property>
+    <property name="in_loudness">-36.926</property>
+    <property name="out_gain">5</property>
+    <property name="reset_count">1</property>
+    <property name="mlt_service">dynamic_loudness</property>
+    <property name="kdenlive_id">dynamic_loudness</property>
+    <property name="kdenlive:collapsed">0</property>
+   </filter>
   </entry>
-  <blank length="00:00:06.333"/>
   <entry producer="chain3" in="00:00:00.000" out="00:03:39.000">
    <property name="kdenlive:id">4</property>
   </entry>
@@ -429,7 +473,7 @@
  <playlist id="playlist3">
   <property name="kdenlive:audio_track">1</property>
  </playlist>
- <tractor id="tractor1" in="00:00:00.000" out="00:11:30.933">
+ <tractor id="tractor1" in="00:00:00.000" out="00:11:23.567">
   <property name="kdenlive:audio_track">1</property>
   <property name="kdenlive:trackheight">69</property>
   <property name="kdenlive:timeline_active">1</property>
@@ -438,7 +482,7 @@
   <property name="kdenlive:audio_rec"/>
   <track hide="video" producer="playlist2"/>
   <track hide="video" producer="playlist3"/>
-  <filter id="filter3">
+  <filter id="filter6">
    <property name="window">75</property>
    <property name="max_gain">20dB</property>
    <property name="level">-0</property>
@@ -446,14 +490,14 @@
    <property name="internal_added">237</property>
    <property name="disable">0</property>
   </filter>
-  <filter id="filter4">
+  <filter id="filter7">
    <property name="channel">-1</property>
    <property name="mlt_service">panner</property>
    <property name="internal_added">237</property>
    <property name="start">0.5</property>
    <property name="disable">1</property>
   </filter>
-  <filter id="filter5">
+  <filter id="filter8">
    <property name="iec_scale">0</property>
    <property name="mlt_service">audiolevel</property>
    <property name="dbpeak">1</property>
@@ -640,19 +684,18 @@
   <entry producer="chain6" in="00:00:08.600" out="00:07:12.333">
    <property name="kdenlive:id">6</property>
   </entry>
-  <entry producer="chain7" in="00:00:04.800" out="00:00:39.767">
+  <entry producer="chain7" in="00:00:05.833" out="00:00:39.767">
    <property name="kdenlive:id">7</property>
   </entry>
   <entry producer="chain6" in="00:07:12.367" out="00:07:19.167">
    <property name="kdenlive:id">6</property>
   </entry>
-  <blank length="00:00:06.333"/>
   <entry producer="chain8" in="00:00:00.000" out="00:03:39.000">
    <property name="kdenlive:id">4</property>
   </entry>
  </playlist>
  <playlist id="playlist5"/>
- <tractor id="tractor2" in="00:00:00.000" out="00:11:30.933">
+ <tractor id="tractor2" in="00:00:00.000" out="00:11:23.567">
   <property name="kdenlive:trackheight">69</property>
   <property name="kdenlive:timeline_active">1</property>
   <property name="kdenlive:collapsed">0</property>
@@ -725,10 +768,10 @@
   <property name="set.test_image">0</property>
  </chain>
  <playlist id="playlist6">
-  <blank length="00:07:54.433"/>
+  <blank length="00:07:47.067"/>
   <entry producer="chain9" in="00:00:02.500" out="00:03:39.100">
    <property name="kdenlive:id">5</property>
-   <filter id="filter6">
+   <filter id="filter9">
     <property name="rotate_center">1</property>
     <property name="mlt_service">qtblend</property>
     <property name="kdenlive_id">qtblend</property>
@@ -741,7 +784,7 @@
   </entry>
  </playlist>
  <playlist id="playlist7"/>
- <tractor id="tractor3" in="00:00:00.000" out="00:11:31.033">
+ <tractor id="tractor3" in="00:00:00.000" out="00:11:23.667">
   <property name="kdenlive:trackheight">69</property>
   <property name="kdenlive:timeline_active">1</property>
   <property name="kdenlive:collapsed">0</property>
@@ -750,9 +793,9 @@
   <track hide="audio" producer="playlist6"/>
   <track hide="audio" producer="playlist7"/>
  </tractor>
- <tractor id="tractor4" in="00:00:00.000" out="00:28:11.067">
-  <property name="kdenlive:duration">00:11:31:02</property>
-  <property name="kdenlive:maxduration">20732</property>
+ <tractor id="tractor4" in="00:00:00.000" out="00:28:03.700">
+  <property name="kdenlive:duration">00:11:23:21</property>
+  <property name="kdenlive:maxduration">20511</property>
   <property name="kdenlive:clipname">Sequence 1</property>
   <property name="kdenlive:description"/>
   <property name="kdenlive:uuid">{3046a070-917d-4754-9b17-78e8ed09b964}</property>
@@ -765,12 +808,12 @@
     {
         "children": [
             {
-                "data": "2:14158",
+                "data": "2:13937",
                 "leaf": "clip",
                 "type": "Leaf"
             },
             {
-                "data": "1:14158",
+                "data": "1:13937",
                 "leaf": "clip",
                 "type": "Leaf"
             }
@@ -780,12 +823,12 @@
     {
         "children": [
             {
-                "data": "3:14233",
+                "data": "3:14012",
                 "leaf": "clip",
                 "type": "Leaf"
             },
             {
-                "data": "0:14233",
+                "data": "0:14012",
                 "leaf": "clip",
                 "type": "Leaf"
             }
@@ -795,12 +838,12 @@
     {
         "children": [
             {
-                "data": "2:13763",
+                "data": "2:13732",
                 "leaf": "clip",
                 "type": "Leaf"
             },
             {
-                "data": "1:13763",
+                "data": "1:13732",
                 "leaf": "clip",
                 "type": "Leaf"
             }
@@ -825,12 +868,12 @@
     {
         "children": [
             {
-                "data": "2:12713",
+                "data": "1:12713",
                 "leaf": "clip",
                 "type": "Leaf"
             },
             {
-                "data": "1:12713",
+                "data": "2:12713",
                 "leaf": "clip",
                 "type": "Leaf"
             }
@@ -839,7 +882,7 @@
     }
 ]
 </property>
-  <property name="kdenlive:sequenceproperties.zoom">8</property>
+  <property name="kdenlive:sequenceproperties.zoom">12</property>
   <property name="kdenlive:sequenceproperties.verticalzoom">1</property>
   <property name="kdenlive:sequenceproperties.thumbnailFrame"/>
   <property name="kdenlive:sequenceproperties.documentuuid">{3046a070-917d-4754-9b17-78e8ed09b964}</property>
@@ -848,12 +891,12 @@
 </property>
   <property name="kdenlive:sequenceproperties.audioTarget">1</property>
   <property name="kdenlive:sequenceproperties.videoTarget">2</property>
-  <property name="kdenlive:sequenceproperties.activeTrack">2</property>
+  <property name="kdenlive:sequenceproperties.activeTrack">1</property>
   <property name="kdenlive:sequenceproperties.hasAudio">1</property>
   <property name="kdenlive:sequenceproperties.hasVideo">1</property>
   <property name="kdenlive:sequenceproperties.tracksCount">4</property>
-  <property name="kdenlive:sequenceproperties.position">13805</property>
-  <property name="kdenlive:sequenceproperties.scrollPos">8048</property>
+  <property name="kdenlive:sequenceproperties.position">11150</property>
+  <property name="kdenlive:sequenceproperties.scrollPos">857</property>
   <property name="kdenlive:sequenceproperties.zonein">0</property>
   <property name="kdenlive:sequenceproperties.zoneout">75</property>
   <property name="kdenlive:sequenceproperties.disablepreview">0</property>
@@ -902,56 +945,56 @@
    <property name="always_active">1</property>
    <property name="internal_added">237</property>
   </transition>
-  <filter id="filter7">
-   <property name="window">75</property>
-   <property name="max_gain">20dB</property>
-   <property name="mlt_service">volume</property>
-   <property name="internal_added">237</property>
-   <property name="disable">1</property>
-  </filter>
-  <filter id="filter8">
-   <property name="channel">-1</property>
-   <property name="mlt_service">panner</property>
-   <property name="internal_added">237</property>
-   <property name="start">0.5</property>
-   <property name="disable">1</property>
-  </filter>
-  <filter id="filter9">
-   <property name="window">75</property>
-   <property name="max_gain">20dB</property>
-   <property name="mlt_service">volume</property>
-   <property name="internal_added">237</property>
-   <property name="disable">1</property>
-  </filter>
   <filter id="filter10">
-   <property name="channel">-1</property>
-   <property name="mlt_service">panner</property>
+   <property name="window">75</property>
+   <property name="max_gain">20dB</property>
+   <property name="mlt_service">volume</property>
    <property name="internal_added">237</property>
-   <property name="start">0.5</property>
    <property name="disable">1</property>
   </filter>
   <filter id="filter11">
-   <property name="window">75</property>
-   <property name="max_gain">20dB</property>
-   <property name="mlt_service">volume</property>
-   <property name="internal_added">237</property>
-   <property name="disable">1</property>
-  </filter>
-  <filter id="filter12">
    <property name="channel">-1</property>
    <property name="mlt_service">panner</property>
    <property name="internal_added">237</property>
    <property name="start">0.5</property>
    <property name="disable">1</property>
   </filter>
-  <filter id="filter13">
+  <filter id="filter12">
    <property name="window">75</property>
    <property name="max_gain">20dB</property>
    <property name="mlt_service">volume</property>
    <property name="internal_added">237</property>
    <property name="disable">1</property>
   </filter>
+  <filter id="filter13">
+   <property name="channel">-1</property>
+   <property name="mlt_service">panner</property>
+   <property name="internal_added">237</property>
+   <property name="start">0.5</property>
+   <property name="disable">1</property>
+  </filter>
   <filter id="filter14">
+   <property name="window">75</property>
+   <property name="max_gain">20dB</property>
+   <property name="mlt_service">volume</property>
+   <property name="internal_added">237</property>
+   <property name="disable">1</property>
+  </filter>
+  <filter id="filter15">
+   <property name="channel">-1</property>
+   <property name="mlt_service">panner</property>
+   <property name="internal_added">237</property>
+   <property name="start">0.5</property>
+   <property name="disable">1</property>
+  </filter>
+  <filter id="filter16">
+   <property name="window">75</property>
+   <property name="max_gain">20dB</property>
+   <property name="mlt_service">volume</property>
+   <property name="internal_added">237</property>
+   <property name="disable">1</property>
+  </filter>
+  <filter id="filter17">
    <property name="channel">-1</property>
    <property name="mlt_service">panner</property>
    <property name="internal_added">237</property>
@@ -1170,8 +1213,8 @@
   <entry producer="chain10" in="00:00:00.000" out="00:07:23.433"/>
   <entry producer="chain11" in="00:00:00.000" out="00:00:47.000"/>
  </playlist>
- <tractor id="tractor5" in="00:00:00.000" out="00:11:31.067">
+ <tractor id="tractor5" in="00:00:00.000" out="00:11:23.700">
   <property name="kdenlive:projectTractor">1</property>
-  <track producer="tractor4" in="00:00:00.000" out="00:11:31.067"/>
+  <track producer="tractor4" in="00:00:00.000" out="00:11:23.700"/>
  </tractor>
 </mlt>
