@@ -6,6 +6,7 @@ import cv2
 import math
 import pickle as pkl
 import random
+import sys
 
 def route_frame(frame):
     input_file = f"out_placed/frame{frame}.placement.txt"
@@ -46,14 +47,17 @@ def route_frame(frame):
 
         img = cv2.imread(f"positioner/frames/BadApple_{frame}.jpg", 0)
         desired_ratio = 0.001
-        desired_samples = int(desired_ratio * (img.sum() / 255))
+        desired_samples = int(desired_ratio * ((480*360) - (img.sum()) / 255))
         print(f"desired_samples = {desired_samples}")
         samples = []
-        while len(samples) < desired_samples:
+        iters = 0
+        max_iters = int((480*360)*(5/6))
+        while (len(samples) < desired_samples) and (iters < max_iters):
+            iters += 1
             x, y = random.randint(1, 480 - 1), random.randint(1, 360 - 1)
             if img[y, x] < 100:
                 samples.append((x, y))
-        print("got samples")
+        print(f"got {len(samples)} samples")
 
         def calc_angle(x1, y1, x2, y2):
             return math.atan2(y2 - y1, x2 - x1)
@@ -144,4 +148,8 @@ def route_frame(frame):
 
         with open(f"out_routes/frame{frame}.route.pkl", "wb") as f:
             pkl.dump(wires, f)
+
+if __name__ == "__main__":
+    frame = int(sys.argv[1])
+    route_frame(frame)
 
