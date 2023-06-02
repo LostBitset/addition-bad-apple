@@ -56,8 +56,12 @@ else:
             samples.append((x, y))
     print("got samples")
 
-    def angle(x1, y1, x2, y2):
+    def calc_angle(x1, y1, x2, y2):
         return math.atan2(y2 - y1, x2 - x1)
+
+    def dist(x1, y1, x2, y2):
+        sum_of_squares = ((x2 - x1) ** 2) + ((y2 - y1) ** 2)
+        return sum_of_squares ** 0.5
 
     print("calculating forbidden angles...")
     forbidden_angles = [] # [[angle to sample]]
@@ -67,16 +71,17 @@ else:
         gy, gx = gate.x, gate.y
         for sx, sy in samples:
             forbidden_angles[i].append(
-                angle(gx, gy, sx, sy)
+                calc_angle(gx, gy, sx, sy)
             )
     print("done calculating")
     nf_angles = sum(map(len, forbidden_angles))
     print(f"nf_angles={nf_angles}")
 
-    forbidden_ranges = []
+    forbidden_ranges = [] # [[[lo, hi]]]
     adj_thresh = (20 / 360) * 2 * math.pi
     print("simplifying forbidden angles list (to ranges)...")
-    for ls in forbidden_angles:
+    for outer_i, ls in enumerate(forbidden_angles):
+        forbidden_ranges.append([])
         ls.sort()
         last = None
         for i, angle in enumerate(ls):
@@ -86,9 +91,9 @@ else:
                     make_range = True
             last = angle
             if make_range:
-                forbidden_ranges[-1][1] = angle + (adj_thresh / 2)
+                forbidden_ranges[outer_i][-1][1] = angle + (adj_thresh / 2)
             else:
-                forbidden_ranges.append([
+                forbidden_ranges[outer_i].append([
                     angle - (adj_thresh / 2),
                     angle + (adj_thresh / 2),
                 ])
@@ -97,6 +102,44 @@ else:
     print(f"{nf_angles} angles -> {nf_ranges} ranges")
     print("ready to begin routing")
 
+    forbidden_penalty = 200
     wires = []
-    # TODO route wires
+    # route wires
+    for positions in net_positions.values():
+        st = positions[0]
+        remaining = positions[1:] # slice creates a copy
+        while len(remaining) != 0:
+            distances = []
+            st_gate_i, _, _ = st
+            f_ranges = forbidden_ranges[st_gate_i]
+            for pot_en_i, pot_en in enumerate(remaining):
+                # check to see if it in a forbidden range
+                en_gate_i, _, _ = pot_en
+                st_gate = gates[st_gate_i]
+                st_y, st_x = st_gate.x, st_gate.y
+                en_gate = gates[en_gate_i]
+                en_y, en_x = en_gate.x, en_gate.y
+                angle = calc_angle(st_x, st_y, en_x, en_y)
+                forbidden = False
+                for f_range in f_ranges:
+                    [lo, hi] = f_range
+                    if (angle > lo) and (angle < hi):
+                        forbidden = True
+                        break
+                # calculate distance +penalty
+                distance = dist(st_x, st_y, en_x, en_y)
+                if forbidden:
+                    distance += forbidden_penalty
+                distances.append((pot_en_i, distance))
+            # find the best option
+            en_i, _ = min(distances, key=lambda x: x[1])
+            # remove it from remaining
+            en = remaining[en_i]
+            del remaining[en_i]
+            # add connection to wires
+            wires.append((st, en))
+            # set as next start
+            st = en
+    print("done routing")
+    print(f"routed {len(wires)} wires")
 
